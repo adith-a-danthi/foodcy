@@ -1,7 +1,10 @@
 <template>
-  <Tutorial/>
+  <div class="content">
+    <Banner />
+  </div>
 </template>
 
 <script>
-export default {}
+import Banner from '~/components/Banner.vue'
+export default { components: { Banner } }
 </script>
