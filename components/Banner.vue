@@ -2,7 +2,7 @@
   <section class="masthead" role="img" aria-label="Image Description">
     <h1>Foodcy</h1>
     <nuxt-link to="/restaurants">
-      <button class="btn-primary">
+      <button class="btn-secondary">
         See Restaurants >
       </button>
     </nuxt-link>
