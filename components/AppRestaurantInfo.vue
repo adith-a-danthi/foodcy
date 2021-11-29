@@ -23,7 +23,9 @@
               <h4>{{ menuItem.item }}</h4>
               <p>${{ menuItem.price.toFixed(2) }}</p>
             </div>
-            <button class="btn-ghost">View Item ></button>
+            <nuxt-link :to="`items/${menuItem.id}`">
+              <button class="btn-ghost">View Item ></button>
+            </nuxt-link>
           </div>
         </div>
       </div>

@@ -3,9 +3,9 @@
     <div class="restaurant-heading">
       <h1>Restaurants</h1>
 
-      <app-select @change="cuisine = $event"/>
+      <app-select @change="cuisine = $event" />
     </div>
-    <app-restaurant-info :restaurants="filteredRestaurants"/>
+    <app-restaurant-info :restaurants="filteredRestaurants" />
   </main>
 </template>
 

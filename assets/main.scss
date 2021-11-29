@@ -6,6 +6,11 @@ $secondary-color--lighten: #63b6b8;
   min-height: calc(100vh - 50px);
 }
 
+.mx-2 {
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
 // nav
 
 nav {
@@ -86,9 +91,20 @@ button {
   }
 }
 
-select, option {
+// Form Elements
+
+input,
+select,
+option {
   padding: 0.5rem;
   font-size: 0.8rem;
+  border-radius: 0.5rem;
+}
+
+fieldset {
+  margin: 20px 0;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
 }
 
 /* Page-specific styles */

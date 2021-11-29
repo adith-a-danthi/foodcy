@@ -2,7 +2,10 @@
   <nav>
     <ul>
       <li>
-        <nuxt-link to="/" class="nav-title"><app-logo /><h1>Foodcy</h1></nuxt-link>
+        <nuxt-link to="/" class="nav-title">
+          <app-logo />
+          <h1>Foodcy</h1>
+        </nuxt-link>
       </li>
       <li>
         <nuxt-link exact to="/restaurants">Restaurants</nuxt-link>
@@ -22,7 +25,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .nav-title {
   display: flex;
   align-items: center;
@@ -34,5 +36,4 @@ export default {
     margin: 0 0.5rem;
   }
 }
-
 </style>
