@@ -1,19 +1,27 @@
 <template>
   <main class="container">
+    <app-toast v-if="cartSubmitted" class="toast">
+      <p>Order Submitted!</p>
+      <p>
+        Return to
+        <nuxt-link to="/restaurants"> restaurants </nuxt-link>!
+      </p>
+    </app-toast>
+
     <section
       class="image"
       :style="`background: url(/${menuItem.img}) no-repeat center center`"
     ></section>
 
     <section class="details">
-      <h1>{{ menuItem.name }}</h1>
+      <h1>{{ menuItem.item }}</h1>
       <h3>Price: ${{ menuItem.price.toFixed(2) }}</h3>
 
       <div class="quantity">
         <input v-model="quantity" type="number" min="1" step="1" />
-        <h2 class="mx-2">${{ combinedPrice }}</h2>
+        <h3 class="mx-2">${{ combinedPrice }}</h3>
       </div>
-      <button class="btn-secondary">Add to Cart</button>
+      <button class="btn-secondary" @click="addToCart">Add to Cart</button>
 
       <fieldset v-if="menuItem.options">
         <legend><h3>Options</h3></legend>
@@ -55,13 +63,17 @@
 
 <script>
 import { mapState } from 'vuex'
+import { v4 as uuidv4 } from 'uuid'
+import AppToast from '@/components/AppToast.vue'
 export default {
+  components: { AppToast },
   data() {
     return {
       id: this.$route.params.id,
       quantity: 1,
       selectedOptions: '',
       selectedAddOns: [],
+      cartSubmitted: false,
     }
   },
   computed: {
@@ -83,6 +95,21 @@ export default {
       return total.toFixed(2)
     },
   },
+  methods: {
+    addToCart() {
+      const item = {
+        id: uuidv4(),
+        name: this.menuItem.item,
+        price: this.combinedPrice,
+        quantity: this.quantity,
+        options: this.selectedOptions,
+        addOns: this.selectedAddOns,
+      }
+
+      this.$store.commit('addToCart', item)
+      this.cartSubmitted = true
+    },
+  },
 }
 </script>
 
@@ -92,8 +119,9 @@ export default {
   margin: 10vh auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 40vh 1fr;
+  grid-template-rows: 50px 40vh 1fr;
   grid-template-areas:
+    'toast toast'
     'image details'
     'description details';
   grid-gap: 3rem;
@@ -111,9 +139,16 @@ export default {
   .quantity {
     display: flex;
     margin: 20px 0 40px;
+    align-content: center;
   }
 }
 .description {
   grid-area: description;
+}
+
+.toast {
+  grid-area: toast;
+  justify-self: end;
+  align-self: center;
 }
 </style>
